@@ -5,6 +5,9 @@ class ConnectFour extends React.Component{
     render() {
         return (
           <div className="connect-four">
+            <div className="description">
+              <Description/>
+            </div>
             <div className="game-board">
               <GameBoard/>
             </div>
@@ -58,7 +61,6 @@ class GameBoard extends React.Component{
     };
 
     restartGame = () => {
-        console.log("restarting game....")
         this.setState({
             squares: Array(48).fill(null),
             xIsNext: this.state.xIsNext,
@@ -71,19 +73,13 @@ class GameBoard extends React.Component{
         if (winner) {
           status = 'Winner: ' + winner;
         } else {
-          status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+          status = 'Turn: ' + (this.state.xIsNext ? 'X' : 'O');
         }
-        const rows = [...Array(7).keys()];
-        console.log(rows)
         return (
           <div>
             <div className="status">{status}</div>
-            <button onClick={this.restartGame}>Restart game</button>
+            <button onClick={this.restartGame} id="restart-game">Restart game</button>
             <div className="board-placer">
-                {rows.forEach(x => {
-                  console.log("ren")
-                  this.renderPlacer(x)
-                })}
                 {this.renderPlacer(0)}
                 {this.renderPlacer(1)}
                 {this.renderPlacer(2)}
@@ -149,6 +145,15 @@ class GameBoard extends React.Component{
           </div>
         );
       }
+}
+
+function Description(){
+  return (
+    <div>
+      <p id="title">A game of connect-four</p>
+      <p>Press the buttons above the columns to place your pieces</p>
+    </div>
+  )
 }
 
 function Placer(props){

@@ -1,3 +1,28 @@
+.game-board{
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.description{
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    text-align: center;
+}
+
+#title{
+    font-size: large;
+    font-weight: bold;
+}
+
+#restart-game{
+    margin-bottom: 3%;
+}
+
+
 .square {
     background: #fff;
     border: 1px solid #999;
