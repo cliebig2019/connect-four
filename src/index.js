@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import ConnectFour from './connectFour';
 
 function Wins(props) {
     return (
@@ -63,7 +64,6 @@ class Board extends React.Component {
       let status;
       if (winner) {
         status = 'Winner: ' + winner;
-        ((winner === 'X') ? this.props.countWinner('X') : this.props.countWinner('O'));
       } else {
         status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       }
@@ -98,18 +98,6 @@ class Board extends React.Component {
         this.state = {
             xWins: 0,
             oWins: 0,
-        }
-    }
-
-    handleWin = (winner) => {
-        if(winner === 'X'){
-            this.setState({
-                xWins: this.state.xWins + 1
-            })
-        } else {
-            this.setState({
-                oWins: this.state.xWins + 1
-            })   
         }
     }
 
@@ -155,5 +143,5 @@ class Board extends React.Component {
   // ========================================
   
   const root = ReactDOM.createRoot(document.getElementById("root"));
-  root.render(<Game />);
+  root.render(<ConnectFour />);
   
