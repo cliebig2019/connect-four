@@ -237,17 +237,17 @@ function calculateWinner(squares, lastMove){
 
   // Check diagonal down
   let diagonalDown = lastMove % (numberOfColumns + 1);
-  let squareDiagonalDown = squares.filter((element, index) => {
-    return index % (numberOfColumns + 1) === diagonalDown;
-  })
-  if(winnerInLine(squareDiagonalDown, potentialWinner)) return potentialWinner;
+  let squareDiagonalDown = squares.map((element, index) => {
+    return {element: element, index: index};
+  }).filter(x => {return x.index % (numberOfColumns + 1) === diagonalDown})
+  if(winnerInDiagonal(squareDiagonalDown, potentialWinner)) return potentialWinner;
 
   // Check diagonal up
   let diagonalUp = lastMove % (numberOfColumns - 1);
-  let squareDiagonalUp = squares.filter((element, index) => {
-    return index % (numberOfColumns - 1) === diagonalUp;
-  })
-  if(winnerInLine(squareDiagonalUp, potentialWinner)) return potentialWinner;
+  let squareDiagonalUp = squares.map((element, index) => {
+    return {element: element, index: index};
+  }).filter(x => {return x.index % (numberOfColumns - 1) === diagonalUp})
+  if(winnerInDiagonal(squareDiagonalUp, potentialWinner)) return potentialWinner;
 
   return false;
 }
@@ -258,6 +258,19 @@ function winnerInLine(line, potentialWinner){
   for(let i = 0; i < line.length; i++){
     if(line[i] === potentialWinner) counterInARow += 1;
     else counterInARow = 0;
+    if(counterInARow >= numberOfPiecesToWin) return true;
+  }
+  return false;
+}
+
+function winnerInDiagonal(diagonal, potentialWinner){
+  let counterInARow = 0;
+  for(let i = 0; i < diagonal.length; i++){
+    if(diagonal[i]["element"] === potentialWinner) counterInARow += 1;
+    else counterInARow = 0;
+    if(i !== 0 && Math.abs(diagonal[i]["index"] % numberOfColumns - (diagonal[i-1]["index"] % numberOfColumns)) !== 1){
+      counterInARow = 1;
+    }
     if(counterInARow >= numberOfPiecesToWin) return true;
   }
   return false;
