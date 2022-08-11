@@ -1,4 +1,9 @@
-.game-board{
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+}
+
+.game-board {
     display: flex;
     justify-content: center;
     align-items: top;
@@ -6,22 +11,17 @@
     min-height: 100vh;
 }
 
-.description{
+.description {
     display: flex;
     justify-content: center;
     align-items: top;
     text-align: center;
 }
 
-#title{
-    font-size: large;
+.status {
     font-weight: bold;
+    font-size: large;
 }
-
-#restart-game{
-    margin-bottom: 3%;
-}
-
 
 .square {
     background: #fff;
@@ -50,4 +50,22 @@
 
 .O {
     background-color: lightblue;
+}
+
+.heading {
+    font-size: large;
+    font-weight: bold;
+}
+
+#title {
+    font-size: large;
+    font-weight: bold;
+}
+
+#restart-game {
+    margin-bottom: 3%;
+}
+
+#settings {
+    justify-content: left;
 }
